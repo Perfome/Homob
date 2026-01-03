@@ -1,0 +1,430 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Partikül konteyneri */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Çiçek konteyneri */
+.flower-container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 600px;
+}
+
+/* Ana gövde - ortadan başlayıp yukarı uzanır */
+.main-stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 0;
+    background: linear-gradient(180deg, #4dd5d9 0%, #2a9d9f 50%, #1a7d7f 100%);
+    border-radius: 3px;
+    animation: mainStemGrow 3s ease-out forwards;
+}
+
+@keyframes mainStemGrow {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 350px;
+    }
+}
+
+/* Çiçek dalları */
+.flower {
+    position: absolute;
+    bottom: 0;
+}
+
+.flower-left {
+    left: 10%;
+    bottom: 100px;
+}
+
+.flower-center {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 180px;
+}
+
+.flower-right {
+    right: 15%;
+    bottom: 140px;
+}
+
+/* Dal gövdeleri */
+.stem-branch {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 0;
+    background: linear-gradient(180deg, #4dd5d9 0%, #2a9d9f 100%);
+    border-radius: 2px;
+}
+
+.flower-left .stem-branch {
+    animation: branchGrow1 2.5s ease-out 0.5s forwards;
+}
+
+.flower-center .stem-branch {
+    animation: branchGrow2 2.5s ease-out 0.3s forwards;
+}
+
+.flower-right .stem-branch {
+    animation: branchGrow3 2.5s ease-out 0.6s forwards;
+}
+
+@keyframes branchGrow1 {
+    from { height: 0; }
+    to { height: 120px; }
+}
+
+@keyframes branchGrow2 {
+    from { height: 0; }
+    to { height: 140px; }
+}
+
+@keyframes branchGrow3 {
+    from { height: 0; }
+    to { height: 110px; }
+}
+
+/* Çiçek başı */
+.flower-head {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+}
+
+.flower-left .flower-head {
+    bottom: 120px;
+    animation: flowerBloom 2s ease-out 1.5s forwards;
+}
+
+.flower-center .flower-head {
+    bottom: 140px;
+    animation: flowerBloom 2s ease-out 1.3s forwards;
+}
+
+.flower-right .flower-head {
+    bottom: 110px;
+    animation: flowerBloom 2s ease-out 1.6s forwards;
+}
+
+@keyframes flowerBloom {
+    0% {
+        transform: translateX(-50%) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Taç yapraklar - 5 yapraklı */
+.petal {
+    position: absolute;
+    width: 35px;
+    height: 45px;
+    background: linear-gradient(135deg, #b4f0f2 0%, #7de3e6 50%, #4dd5d9 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    top: 50%;
+    left: 50%;
+    transform-origin: 50% 100%;
+    box-shadow: 0 2px 10px rgba(77, 213, 217, 0.3);
+}
+
+.petal:nth-child(1) {
+    transform: translate(-50%, -60%) rotate(0deg);
+}
+
+.petal:nth-child(2) {
+    transform: translate(-50%, -60%) rotate(72deg);
+}
+
+.petal:nth-child(3) {
+    transform: translate(-50%, -60%) rotate(144deg);
+}
+
+.petal:nth-child(4) {
+    transform: translate(-50%, -60%) rotate(216deg);
+}
+
+.petal:nth-child(5) {
+    transform: translate(-50%, -60%) rotate(288deg);
+}
+
+/* Çiçek merkezi */
+.center {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: radial-gradient(circle, #fff9e6 0%, #ffe680 40%, #ffd633 100%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(255, 230, 128, 0.6), inset 0 0 8px rgba(255, 200, 0, 0.4);
+}
+
+/* Yan yapraklar */
+.side-leaves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.leaf-group {
+    position: absolute;
+    bottom: 50px;
+}
+
+.left-group {
+    left: 35%;
+}
+
+.right-group {
+    right: 30%;
+}
+
+/* Yaprak tasarımı */
+.leaf {
+    position: absolute;
+    width: 35px;
+    height: 50px;
+    background: linear-gradient(135deg, #4dd5d9 0%, #2a9d9f 100%);
+    border-radius: 0 50% 50% 0;
+    opacity: 0;
+    transform-origin: right center;
+}
+
+.left-group .leaf {
+    transform: rotate(-40deg) scale(0);
+}
+
+.right-group .leaf {
+    transform: rotate(40deg) scaleX(-1) scale(0);
+}
+
+/* Sol grup yaprakları */
+.left-group .leaf-1 {
+    bottom: 20px;
+    left: -25px;
+    animation: leafGrowLeft 1.5s ease-out 1.8s forwards;
+}
+
+.left-group .leaf-2 {
+    bottom: 60px;
+    left: -30px;
+    animation: leafGrowLeft 1.5s ease-out 2s forwards;
+}
+
+.left-group .leaf-3 {
+    bottom: 100px;
+    left: -28px;
+    animation: leafGrowLeft 1.5s ease-out 2.2s forwards;
+}
+
+.left-group .leaf-4 {
+    bottom: 140px;
+    left: -32px;
+    animation: leafGrowLeft 1.5s ease-out 2.4s forwards;
+}
+
+/* Sağ grup yaprakları */
+.right-group .leaf-1 {
+    bottom: 30px;
+    right: -25px;
+    animation: leafGrowRight 1.5s ease-out 1.9s forwards;
+}
+
+.right-group .leaf-2 {
+    bottom: 70px;
+    right: -30px;
+    animation: leafGrowRight 1.5s ease-out 2.1s forwards;
+}
+
+.right-group .leaf-3 {
+    bottom: 110px;
+    right: -28px;
+    animation: leafGrowRight 1.5s ease-out 2.3s forwards;
+}
+
+.right-group .leaf-4 {
+    bottom: 150px;
+    right: -32px;
+    animation: leafGrowRight 1.5s ease-out 2.5s forwards;
+}
+
+@keyframes leafGrowLeft {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(-40deg) scale(1);
+    }
+}
+
+@keyframes leafGrowRight {
+    from {
+        opacity: 0;
+        transform: rotate(90deg) scaleX(-1) scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(40deg) scaleX(-1) scale(1);
+    }
+}
+
+/* Alt gövde yaprakları */
+.bottom-leaves {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+}
+
+.bottom-leaf {
+    position: absolute;
+    bottom: -20px;
+    width: 50px;
+    height: 80px;
+    background: linear-gradient(135deg, #2a9d9f 0%, #1a7d7f 100%);
+    clip-path: ellipse(50% 60% at 50% 40%);
+    opacity: 0;
+    transform-origin: bottom center;
+}
+
+.bottom-1 {
+    left: 5%;
+    transform: rotate(-25deg) scale(0);
+    animation: bottomLeafGrow 1.5s ease-out 2.2s forwards;
+}
+
+.bottom-2 {
+    left: 20%;
+    transform: rotate(-15deg) scale(0);
+    animation: bottomLeafGrow 1.5s ease-out 2.3s forwards;
+}
+
+.bottom-3 {
+    left: 35%;
+    transform: rotate(-5deg) scale(0);
+    animation: bottomLeafGrow 1.5s ease-out 2.4s forwards;
+}
+
+.bottom-4 {
+    right: 35%;
+    transform: rotate(5deg) scale(0);
+    animation: bottomLeafGrow 1.5s ease-out 2.5s forwards;
+}
+
+.bottom-5 {
+    right: 20%;
+    transform: rotate(15deg) scale(0);
+    animation: bottomLeafGrow 1.5s ease-out 2.6s forwards;
+}
+
+.bottom-6 {
+    right: 5%;
+    transform: rotate(25deg) scale(0);
+    animation: bottomLeafGrow 1.5s ease-out 2.7s forwards;
+}
+
+@keyframes bottomLeafGrow {
+    from {
+        opacity: 0;
+        transform: rotate(var(--rotation, 0deg)) scale(0);
+    }
+    to {
+        opacity: 0.9;
+        transform: rotate(var(--rotation, 0deg)) scale(1);
+    }
+}
+
+/* Partikül animasyonu */
+@keyframes particleFall {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(80vh) translateX(var(--drift, 0)) scale(0.2);
+        opacity: 0;
+    }
+}
+
+/* Hafif sallanma efekti */
+@keyframes gentleSway {
+    0%, 100% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    25% {
+        transform: translateX(-50%) rotate(-1deg);
+    }
+    75% {
+        transform: translateX(-50%) rotate(1deg);
+    }
+}
+
+.flower-container {
+    animation: gentleSway 4s ease-in-out 4s infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .flower-container {
+        width: 90%;
+        max-width: 400px;
+    }
+}
